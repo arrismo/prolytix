@@ -1,4 +1,3 @@
-
 import { Survey, Provider, PatientSurvey, SurveyQuestion, AnalyticsData, ChartData } from '@/types';
 
 // Mock data for development
@@ -53,28 +52,28 @@ export const mockSurveys: Survey[] = [
 export const mockProviders: Provider[] = [
   {
     id: 'p1',
-    name: 'Dr. Sarah Johnson',
+    name: 'Dr. A',
     specialty: 'Cardiology',
     department: 'Heart Center',
     surveys: mockSurveys.slice(0, 2),
   },
   {
     id: 'p2',
-    name: 'Dr. Michael Chen',
+    name: 'Dr. B',
     specialty: 'Orthopedics',
     department: 'Surgical',
     surveys: mockSurveys.slice(2, 4),
   },
   {
     id: 'p3',
-    name: 'Dr. Emily Rodriguez',
+    name: 'Dr. C',
     specialty: 'Pediatrics',
     department: 'Children\'s Health',
     surveys: mockSurveys.slice(1, 3),
   },
   {
     id: 'p4',
-    name: 'Dr. James Wilson',
+    name: 'Dr. D',
     specialty: 'Neurology',
     department: 'Neuroscience',
     surveys: mockSurveys.slice(3, 5),
@@ -218,7 +217,7 @@ export const mockScoreDistributionChartData: ChartData = {
 };
 
 export const mockProviderComparisonChartData: ChartData = {
-  labels: ['Dr. Johnson', 'Dr. Chen', 'Dr. Rodriguez', 'Dr. Wilson'],
+  labels: ['Dr. A', 'Dr. B', 'Dr. C', 'Dr. D'],
   datasets: [
     {
       label: 'Average Score',

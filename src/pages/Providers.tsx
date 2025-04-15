@@ -1,4 +1,3 @@
-
 import { MainLayout } from "@/layouts/main-layout";
 import { PageHeader } from "@/components/layout/page-header";
 import { ChartCard } from "@/components/ui/chart-card";
