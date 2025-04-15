@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import { Bell, HelpCircle, Search, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Bell, HelpCircle, LogOut, Search, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 
 interface HeaderProps {
   className?: string;
@@ -20,6 +22,19 @@ interface HeaderProps {
 
 export function Header({ className }: HeaderProps) {
   const [showSearch, setShowSearch] = useState(false);
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    // Remove authentication from session storage
+    sessionStorage.removeItem("isAuthenticated");
+    // Show success toast
+    toast({
+      title: "Logged out successfully",
+      description: "You have been logged out of your account",
+    });
+    // Navigate to login page
+    navigate("/login");
+  };
   
   return (
     <header
@@ -71,9 +86,13 @@ export function Header({ className }: HeaderProps) {
               <DropdownMenuItem>
                 <User className="h-4 w-4 mr-2" /> Profile
               </DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings className="h-4 w-4 mr-2" /> Settings
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>
+                <LogOut className="h-4 w-4 mr-2" /> Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

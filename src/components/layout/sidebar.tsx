@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   BarChart4, 
@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { toast } from "@/hooks/use-toast";
 
 interface SidebarProps {
   className?: string;
@@ -23,6 +24,7 @@ interface SidebarProps {
 export function Sidebar({ className }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
   
   const navItems = [
@@ -53,6 +55,18 @@ export function Sidebar({ className }: SidebarProps) {
     },
   ];
   
+  const handleLogout = () => {
+    // Remove authentication from session storage
+    sessionStorage.removeItem("isAuthenticated");
+    // Show success toast
+    toast({
+      title: "Logged out successfully",
+      description: "You have been logged out of your account",
+    });
+    // Navigate to login page
+    navigate("/login");
+  };
+  
   const bottomNavItems = [
     {
       title: "Settings",
@@ -62,7 +76,7 @@ export function Sidebar({ className }: SidebarProps) {
     {
       title: "Logout",
       icon: LogOut,
-      href: "/",
+      onClick: handleLogout,
     },
   ];
   
@@ -144,20 +158,36 @@ export function Sidebar({ className }: SidebarProps) {
           <div className="border-t border-border p-2">
             <div className="space-y-1">
               {bottomNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  onClick={handleLinkClick}
-                  className={cn(
-                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                    location.pathname === item.href
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-muted"
-                  )}
-                >
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.title}</span>
-                </Link>
+                item.onClick ? (
+                  <button
+                    key={item.title}
+                    onClick={() => {
+                      handleLinkClick();
+                      item.onClick();
+                    }}
+                    className={cn(
+                      "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted text-left"
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.title}</span>
+                  </button>
+                ) : (
+                  <Link
+                    key={item.title}
+                    to={item.href}
+                    onClick={handleLinkClick}
+                    className={cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                      location.pathname === item.href
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-muted"
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                )
               ))}
             </div>
           </div>
