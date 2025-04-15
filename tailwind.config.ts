@@ -61,6 +61,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				prolytix: {
+					purple: '#6E59A5',
+					'dark-purple': '#1A1F2C',
+					blue: '#0EA5E9',
+					'light-purple': '#F1F0FB',
+					'vivid-purple': '#8B5CF6',
+					magenta: '#D946EF'
 				}
 			},
 			borderRadius: {
