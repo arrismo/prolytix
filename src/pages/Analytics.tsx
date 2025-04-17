@@ -230,7 +230,7 @@ const Analytics = () => {
           </div>
           
           <ChartCard 
-            title="Gemini Insights" 
+            title="Prolytix" 
             description="AI-powered statistical analysis"
           >
             <div className="space-y-4">
@@ -345,7 +345,7 @@ const Analytics = () => {
           
           <ChartCard 
             title="Provider Insights" 
-            description="Gemini analysis of provider performance"
+            description="Analysis of provider performance"
           >
             <div className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">

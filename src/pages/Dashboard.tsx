@@ -177,7 +177,7 @@ const Dashboard = () => {
       
       <div className="mt-6">
         <ChartCard 
-          title="Gemini Insights" 
+          title="Prolytix" 
           description="AI-powered analysis of your survey data"
         >
           <div className="space-y-4">
