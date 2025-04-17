@@ -1,4 +1,3 @@
-
 import { MainLayout } from "@/layouts/main-layout";
 import { PageHeader } from "@/components/layout/page-header";
 import { DataCard } from "@/components/ui/data-card";
@@ -103,7 +102,7 @@ const Dashboard = () => {
         </Button>
       </PageHeader>
       
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2 mt-6">
         <DataCard
           title="Total Surveys"
           value={mockAnalyticsData.totalSurveys}
@@ -115,19 +114,6 @@ const Dashboard = () => {
           value={`${mockAnalyticsData.responseRate}%`}
           icon={<Users className="h-4 w-4" />}
           trend={{ value: 4, label: "from last month", positive: true }}
-        />
-        <DataCard
-          title="Average Score"
-          value={mockAnalyticsData.averageScore}
-          description="Out of 5"
-          icon={<BarChart3 className="h-4 w-4" />}
-          trend={{ value: 0.2, label: "from last month", positive: true }}
-        />
-        <DataCard
-          title="ANOVA Significance"
-          value={mockAnalyticsData.anovaResults.significant ? "Significant" : "Not Significant"}
-          description={`p-value: ${mockAnalyticsData.anovaResults.pValue}`}
-          icon={<ArrowUpRight className="h-4 w-4" />}
         />
       </div>
       
@@ -147,7 +133,7 @@ const Dashboard = () => {
       </div>
       
       <div className="grid gap-4 md:grid-cols-3 mt-6">
-        <div className="md:col-span-2">
+        <div className="md:col-span-3">
           <ChartCard 
             title="Recent Surveys" 
             description="Latest survey performance"
@@ -167,12 +153,6 @@ const Dashboard = () => {
             />
           </ChartCard>
         </div>
-        <ChartCard 
-          title="Score Distribution" 
-          description="Distribution of survey scores"
-        >
-          <DoughnutChart data={mockScoreDistributionChartData} height={250} />
-        </ChartCard>
       </div>
       
       <div className="mt-6">
